@@ -2,27 +2,27 @@
 
 #Je definis les diffrentes actions du programme dans des fonctions
 
-def chiffrer (message, clee):
+def chiffrer (message, cle):
 
     """cette fonction chiffre le message"""
 
     message_chiffre = ""
     for lettres in message:
             position = alphabet.find(lettres)
-            nouvelle_position = (position + clee) % 26
+            nouvelle_position = (position + cle) % 26
             nouvelle_lettre = alphabet[nouvelle_position] 
             message_chiffre = message_chiffre + nouvelle_lettre      
 
     return (message_chiffre)
 
-def dechiffrer (message, clee):
+def dechiffrer (message, cle):
 
-    """cette fonction dechiffre un message si la clée est connue"""
+    """cette fonction dechiffre un message si la clé est connue"""
 
     message_dechiffre = ""
     for lettres in message:
         position = alphabet.find(lettres)
-        nouvelle_position = (position - clee) % 26
+        nouvelle_position = (position - cle) % 26
         nouvelle_lettre = alphabet[nouvelle_position] 
         message_dechiffre = message_dechiffre + nouvelle_lettre      
         
@@ -30,16 +30,16 @@ def dechiffrer (message, clee):
 
 def brute_force (message):
 
-    """cette focntion essaye toute les combinaisons de clées possibles pour dechiffrer le message si la clée est inconnue"""
+    """cette focntion essaye toute les combinaisons de clés possibles pour dechiffrer le message si la clé est inconnue"""
 
-    for clee in range(26):
+    for cle in range(26):
          message_dechiffre = ""
          for lettres in message:
              position = alphabet.find(lettres)
-             ancienne_position = (position - clee) % 26
+             ancienne_position = (position - cle) % 26
              ancienne_lettre = alphabet[ancienne_position] 
              message_dechiffre = message_dechiffre + ancienne_lettre
-         print(f"Clée{clee}: {message_dechiffre}")
+         print(f"Clé{cle}: {message_dechiffre}")
 
     return (message_dechiffre)
 
@@ -54,14 +54,14 @@ message = message.upper()
 #Le programme principal qui organise les actions : chiffrer/ déchiffrer/ forcer
 
 if action == "c":
-    clee = int(input("entrez la clé : "))
-    resultat = chiffrer(message, clee)
+    cle = int(input("entrez la clé : "))
+    resultat = chiffrer(message, cle)
     print(resultat)
 elif action == "d":
-    reponse = input("connaissez vous la clée o/n ?")
+    reponse = input("connaissez vous la clé o/n ?")
     if reponse == "o":
-        clee = int(input("entrez la clé : "))
-        resultat = dechiffrer(message, clee)
+        cle = int(input("entrez la clé : "))
+        resultat = dechiffrer(message, cle)
         print(resultat)
     elif reponse =="n":
             resultat = brute_force(message)
